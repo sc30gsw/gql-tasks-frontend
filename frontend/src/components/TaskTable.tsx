@@ -7,6 +7,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Task } from '../types/task'
 import EditTask from './EditTask'
+import DeleteTask from './DeleteTask'
+import { Stack } from '@mui/material'
 
 type TaskTableProps = {
   tasks?: Task[]
@@ -37,7 +39,10 @@ const TaskTable = ({ tasks, userId }: TaskTableProps) => {
               <TableCell align="right">{task.dueDate}</TableCell>
               <TableCell align="right">{task.status}</TableCell>
               <TableCell align="right">
-                <EditTask task={task} userId={userId} />
+                <Stack spacing={2} direction="row" justifyContent="flex-end">
+                  <EditTask task={task} userId={userId} />
+                  <DeleteTask id={task.id} userId={userId} />
+                </Stack>
               </TableCell>
             </TableRow>
           ))}
