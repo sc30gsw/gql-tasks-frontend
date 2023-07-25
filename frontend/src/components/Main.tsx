@@ -1,10 +1,11 @@
 import Header from './Header'
+import TaskTable from './TaskTable'
 
 const Main = () => {
   return (
     <>
       <Header />
-      <div>Main</div>
+      <TaskTable />
     </>
   )
 }
