@@ -5,6 +5,7 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
+import { Task } from '../types/task'
 
 const createData = (name: string, dueDate: string, status: string) => {
   return { name, dueDate, status }
@@ -16,7 +17,12 @@ const rows = [
   createData('task3', '2023-01-03', 'COMPLETED'),
 ]
 
-const TaskTable = () => {
+type TaskTableProps = {
+  tasks?: Task[]
+  userId: number
+}
+
+const TaskTable = ({ tasks, userId }: TaskTableProps) => {
   return (
     <TableContainer component={Paper} sx={{ width: '80%', m: 'auto' }}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -29,16 +35,16 @@ const TaskTable = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {tasks?.map((task) => (
             <TableRow
-              key={row.name}
+              key={task.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {row.name}
+                {task.name}
               </TableCell>
-              <TableCell align="right">{row.dueDate}</TableCell>
-              <TableCell align="right">{row.status}</TableCell>
+              <TableCell align="right">{task.dueDate}</TableCell>
+              <TableCell align="right">{task.status}</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           ))}
