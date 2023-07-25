@@ -62,7 +62,7 @@ const AddTask = ({ userId }: { userId: number }) => {
       } catch (err: any) {
         if (err.message === 'Unauthorized') {
           localStorage.remove('token')
-          alert('トークンの有効期限が切れました。サインイン画面に遷移します。')
+          alert('トークンの有効期限が切れました。サインイン画面に遷移します')
           navigate('/signin')
           return
         }
